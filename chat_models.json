@@ -1,0 +1,219 @@
+[
+    {
+        "Organization": "Meta",
+        "Model Name": "Llama 3.1 8B Instruct Turbo",
+        "API Model String": "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
+        "Context length": 131072,
+        "Quantization": "FP8"
+    },
+    {
+        "Organization": "Meta",
+        "Model Name": "Llama 3.1 70B Instruct Turbo",
+        "API Model String": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
+        "Context length": 131072,
+        "Quantization": "FP8"
+    },
+    {
+        "Organization": "Meta",
+        "Model Name": "Llama 3.1 405B Instruct Turbo",
+        "API Model String": "meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
+        "Context length": 130815,
+        "Quantization": "FP8"
+    },
+    {
+        "Organization": "Meta",
+        "Model Name": "Llama 3 8B Instruct Turbo",
+        "API Model String": "meta-llama/Meta-Llama-3-8B-Instruct-Turbo",
+        "Context length": 8192,
+        "Quantization": "FP8"
+    },
+    {
+        "Organization": "Meta",
+        "Model Name": "Llama 3 70B Instruct Turbo",
+        "API Model String": "meta-llama/Meta-Llama-3-70B-Instruct-Turbo",
+        "Context length": 8192,
+        "Quantization": "FP8"
+    },
+    {
+        "Organization": "Meta",
+        "Model Name": "Llama 3.2 3B Instruct Turbo",
+        "API Model String": "meta-llama/Llama-3.2-3B-Instruct-Turbo",
+        "Context length": 131072,
+        "Quantization": "FP16"
+    },
+    {
+        "Organization": "Meta",
+        "Model Name": "Llama 3 8B Instruct Lite",
+        "API Model String": "meta-llama/Meta-Llama-3-8B-Instruct-Lite",
+        "Context length": 8192,
+        "Quantization": "INT4"
+    },
+    {
+        "Organization": "Meta",
+        "Model Name": "Llama 3 70B Instruct Lite",
+        "API Model String": "meta-llama/Meta-Llama-3-70B-Instruct-Lite",
+        "Context length": 8192,
+        "Quantization": "INT4"
+    },
+    {
+        "Organization": "Meta",
+        "Model Name": "Llama 3 8B Instruct Reference",
+        "API Model String": "meta-llama/Llama-3-8b-chat-hf",
+        "Context length": 8192,
+        "Quantization": "FP16"
+    },
+    {
+        "Organization": "Meta",
+        "Model Name": "Llama 3 70B Instruct Reference",
+        "API Model String": "meta-llama/Llama-3-70b-chat-hf",
+        "Context length": 8192,
+        "Quantization": "FP16"
+    },
+    {
+        "Organization": "Microsoft",
+        "Model Name": "WizardLM-2 8x22B",
+        "API Model String": "microsoft/WizardLM-2-8x22B",
+        "Context length": 65536,
+        "Quantization": "FP16"
+    },
+    {
+        "Organization": "Google",
+        "Model Name": "Gemma 2 27B",
+        "API Model String": "google/gemma-2-27b-it",
+        "Context length": 8192,
+        "Quantization": "FP16"
+    },
+    {
+        "Organization": "Google",
+        "Model Name": "Gemma 2 9B",
+        "API Model String": "google/gemma-2-9b-it",
+        "Context length": 8192,
+        "Quantization": "FP16"
+    },
+    {
+        "Organization": "databricks",
+        "Model Name": "DBRX Instruct",
+        "API Model String": "databricks/dbrx-instruct",
+        "Context length": 32768,
+        "Quantization": "FP16"
+    },
+    {
+        "Organization": "DeepSeek",
+        "Model Name": "DeepSeek LLM Chat (67B)",
+        "API Model String": "deepseek-ai/deepseek-llm-67b-chat",
+        "Context length": 4096,
+        "Quantization": "FP16"
+    },
+    {
+        "Organization": "Google",
+        "Model Name": "Gemma Instruct (2B)",
+        "API Model String": "google/gemma-2b-it",
+        "Context length": 8192,
+        "Quantization": "FP16"
+    },
+    {
+        "Organization": "Gryphe",
+        "Model Name": "MythoMax-L2 (13B)",
+        "API Model String": "Gryphe/MythoMax-L2-13b",
+        "Context length": 4096,
+        "Quantization": "FP16"
+    },
+    {
+        "Organization": "Meta",
+        "Model Name": "LLaMA-2 Chat (13B)",
+        "API Model String": "meta-llama/Llama-2-13b-chat-hf",
+        "Context length": 4096,
+        "Quantization": "FP16"
+    },
+    {
+        "Organization": "mistralai",
+        "Model Name": "Mistral (7B) Instruct",
+        "API Model String": "mistralai/Mistral-7B-Instruct-v0.1",
+        "Context length": 8192,
+        "Quantization": "FP16"
+    },
+    {
+        "Organization": "mistralai",
+        "Model Name": "Mistral (7B) Instruct v0.2",
+        "API Model String": "mistralai/Mistral-7B-Instruct-v0.2",
+        "Context length": 32768,
+        "Quantization": "FP16"
+    },
+    {
+        "Organization": "mistralai",
+        "Model Name": "Mistral (7B) Instruct v0.3",
+        "API Model String": "mistralai/Mistral-7B-Instruct-v0.3",
+        "Context length": 32768,
+        "Quantization": "FP16"
+    },
+    {
+        "Organization": "mistralai",
+        "Model Name": "Mixtral-8x7B Instruct (46.7B)",
+        "API Model String": "mistralai/Mixtral-8x7B-Instruct-v0.1",
+        "Context length": 32768,
+        "Quantization": "FP16"
+    },
+    {
+        "Organization": "mistralai",
+        "Model Name": "Mixtral-8x22B Instruct (141B)",
+        "API Model String": "mistralai/Mixtral-8x22B-Instruct-v0.1",
+        "Context length": 65536,
+        "Quantization": "FP16"
+    },
+    {
+        "Organization": "NousResearch",
+        "Model Name": "Nous Hermes 2 - Mixtral 8x7B-DPO (46.7B)",
+        "API Model String": "NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO",
+        "Context length": 32768,
+        "Quantization": "FP16"
+    },
+    {
+        "Organization": "NousResearch",
+        "Model Name": "[Deprecating 10/1] Nous Hermes-2 Yi (34B)",
+        "API Model String": "NousResearch/Nous-Hermes-2-Yi-34B",
+        "Context length": 4096,
+        "Quantization": "FP16"
+    },
+    {
+        "Organization": "NousResearch",
+        "Model Name": "[Deprecating 10/1] Hermes 3 - Llama-3.1 405B",
+        "API Model String": "NousResearch/Hermes-3-Llama-3.1-405B-Turbo",
+        "Context length": 8192,
+        "Quantization": "FP8"
+    },
+    {
+        "Organization": "Qwen",
+        "Model Name": "Qwen 1.5 Chat (72B)",
+        "API Model String": "Qwen/Qwen1.5-72B-Chat",
+        "Context length": 32768,
+        "Quantization": "FP16"
+    },
+    {
+        "Organization": "Qwen",
+        "Model Name": "Qwen 1.5 Chat (110B)",
+        "API Model String": "Qwen/Qwen1.5-110B-Chat",
+        "Context length": 32768,
+        "Quantization": "FP16"
+    },
+    {
+        "Organization": "Qwen",
+        "Model Name": "Qwen 2 Instruct (72B)",
+        "API Model String": "Qwen/Qwen2-72B-Instruct",
+        "Context length": 32768,
+        "Quantization": "FP16"
+    },
+    {
+        "Organization": "Together",
+        "Model Name": "StripedHyena Nous (7B)",
+        "API Model String": "togethercomputer/StripedHyena-Nous-7B",
+        "Context length": 32768,
+        "Quantization": "FP16"
+    },
+    {
+        "Organization": "upstage",
+        "Model Name": "Upstage SOLAR Instruct v1 (11B)",
+        "API Model String": "upstage/SOLAR-10.7B-Instruct-v1.0",
+        "Context length": 4096,
+        "Quantization": "FP16"
+    }
+]
