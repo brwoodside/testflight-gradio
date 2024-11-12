@@ -29,7 +29,7 @@ import gradio as gr
 import together_gradio
 
 gr.load(
-    name='llama3.1-8b',
+    name='meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo',
     src=together_gradio.registry,
 ).launch()
 ```
@@ -47,10 +47,10 @@ import gradio as gr
 import together_gradio
 
 gr.load(
-    name='llama3.1-8b',
+    name='meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo',
     src=together_gradio.registry,
     title='Together-Gradio Integration',
-    description="Chat with llama3.1-8b model.",
+    description="Chat with Meta-Llama-3.1-70B-Instruct-Turbo model.",
     examples=["Explain quantum gravity to a 5-year old.", "How many R are there in the word Strawberry?"]
 ).launch()
 ```
@@ -66,9 +66,9 @@ import together_gradio
 
 with gr.Blocks() as demo:
     with gr.Tab("8B"):
-        gr.load('llama3.1-8b', src=Together_gradio.registry)
+        gr.load('meta-llama/Meta-Llama-3-8B-Instruct-Lite', src=Together_gradio.registry)
     with gr.Tab("70B"):
-        gr.load('llama3.1-70b', src=Together_gradio.registry)
+        gr.load('meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo', src=Together_gradio.registry)
 
 demo.launch()
 ```
