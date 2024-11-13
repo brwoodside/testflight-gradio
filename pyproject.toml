@@ -3,9 +3,9 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "cerebras-gradio"
+name = "together-gradio"
 version = "0.1.0"
-description = "A Python package for replicating Gradio applications"
+description = "A Python package for replicating Gradio applications using Together AI"
 authors = [
     { name = "Your Name", email = "your.email@example.com" }
 ]
@@ -17,17 +17,17 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "gradio==5.0b5",
-    "together",
+    "gradio==5.5.0",
+    "openai",
 ]
 
 [project.urls]
-homepage = "https://github.com/your-username/cerebras-gradio"
-repository = "https://github.com/your-username/cerebras-gradio"
+homepage = "https://github.com/your-username/together-gradio"
+repository = "https://github.com/your-username/together-gradio"
 
 [project.optional-dependencies]
 dev = ["pytest"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["cerebras_gradio"]
+packages = ["together_gradio"]
 
