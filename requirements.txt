@@ -1,2 +1,2 @@
-together
-gradio==5.0b5
+openai
+gradio==5.5.0
