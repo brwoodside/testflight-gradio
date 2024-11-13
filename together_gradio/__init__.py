@@ -78,61 +78,21 @@ def handle_user_msg(message: Union[str, Dict[str, Any]]) -> Union[str, list]:
         raise NotImplementedError(f"Unsupported message type: {type(message)}")
 
 def get_fn(model_name: str, preprocess: Callable, postprocess: Callable, api_key: str):
-    def fn(message: Union[str, Dict[str, Any]], history: list) -> str:
-        """
-        Process chat messages and return response.
-        Args:
-            message: Either a string (text-only) or dict with 'text' and 'files' keys (multimodal)
-            history: List of messages with 'role' and 'content' keys
-        Returns:
-            str: The model's response
-        """
+    def fn(message, history):
         try:
-            inputs = preprocess(message, history)
             client = OpenAI(
                 api_key=api_key,
                 base_url="https://api.together.xyz/v1",
             )
             
-            logging.info(f"Sending request to model: {model_name}")
-            
-            # Format messages for Together AI API
-            api_messages = []
-            for msg in inputs["messages"]:
-                if isinstance(msg["content"], list):
-                    # Handle multimodal content
-                    content = []
-                    for item in msg["content"]:
-                        if isinstance(item, dict) and "path" in item:
-                            # Convert image path to base64
-                            ext = os.path.splitext(item["path"])[1].strip(".")
-                            encoded_str = get_image_base64(item["path"], ext)
-                            content.append({
-                                "type": "image_url",
-                                "image_url": {"url": encoded_str}
-                            })
-                        else:
-                            content.append({
-                                "type": "text",
-                                "text": str(item)
-                            })
-                    api_messages.append({
-                        "role": msg["role"],
-                        "content": content
-                    })
-                else:
-                    # Handle text-only content
-                    api_messages.append({
-                        "role": msg["role"],
-                        "content": str(msg["content"])
-                    })
-            
-            logging.debug(f"API messages: {api_messages}")
+            inputs = preprocess(message, history)
             
             stream = client.chat.completions.create(
                 model=model_name,
-                messages=api_messages,
+                messages=inputs["messages"],
                 stream=True,
+                max_tokens=1024,
+                temperature=0.7,
             )
             
             response_text = ""
@@ -152,53 +112,66 @@ def get_interface_args(pipeline):
     if pipeline == "chat":
         def preprocess(message, history):
             messages = []
-            
-            # Add a system message
             messages.append({
                 "role": "system",
                 "content": "You are a helpful AI assistant. Answer questions clearly and concisely."
             })
             
-            # Process history (messages format)
-            for msg in history:
-                messages.append({
-                    "role": msg["role"],
-                    "content": msg["content"]
-                })
-            
-            # Process current message
-            if isinstance(message, dict):
+            # Process history
+            files = None
+            for user_msg, assistant_msg in history:
+                if assistant_msg is not None:
+                    # Handle user message
+                    if isinstance(user_msg, dict) and user_msg.get("files"):
+                        content = []
+                        if user_msg.get("text"):
+                            content.append({
+                                "type": "text",
+                                "text": user_msg["text"]
+                            })
+                        for file_path in user_msg["files"]:
+                            ext = os.path.splitext(file_path)[1].strip(".")
+                            if ext.lower() in ["png", "jpg", "jpeg", "gif"]:
+                                encoded_str = get_image_base64(file_path, ext)
+                                content.append({
+                                    "type": "image_url",
+                                    "image_url": {"url": encoded_str}
+                                })
+                        messages.append({"role": "user", "content": content})
+                    else:
+                        messages.append({"role": "user", "content": str(user_msg)})
+                    
+                    # Add assistant message
+                    messages.append({"role": "assistant", "content": assistant_msg})
+                else:
+                    files = user_msg["files"] if isinstance(user_msg, dict) else None
+
+            # Handle current message
+            if isinstance(message, str) and files:
+                message = {"text": message, "files": files}
+            elif isinstance(message, dict) and files and not message.get("files"):
+                message["files"] = files
+
+            # Format current message
+            if isinstance(message, dict) and message.get("files"):
                 content = []
-                # Add text if present
                 if message.get("text"):
-                    content.append(message["text"])
-                
-                # Add images if present
-                if message.get("files"):
-                    for file_path in message["files"]:
-                        content.append({"path": file_path})
-                
-                # For API request
-                api_content = handle_user_msg(message)
-                messages.append({
-                    "role": "user",
-                    "content": api_content
-                })
-                
-                # For display in chat
-                if content:
-                    messages.append({
-                        "role": "user",
-                        "content": content
+                    content.append({
+                        "type": "text",
+                        "text": message["text"]
                     })
+                for file_path in message["files"]:
+                    ext = os.path.splitext(file_path)[1].strip(".")
+                    if ext.lower() in ["png", "jpg", "jpeg", "gif"]:
+                        encoded_str = get_image_base64(file_path, ext)
+                        content.append({
+                            "type": "image_url",
+                            "image_url": {"url": encoded_str}
+                        })
+                messages.append({"role": "user", "content": content})
             else:
-                content = str(message)
-                messages.append({
-                    "role": "user",
-                    "content": content
-                })
-            
-            logging.debug(f"Preprocessed messages: {messages}")
+                messages.append({"role": "user", "content": str(message)})
+
             return {"messages": messages}
 
         def postprocess(x: str) -> str:
