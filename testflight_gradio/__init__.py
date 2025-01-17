@@ -84,9 +84,9 @@ def registry(name: str, token: str | None = None, **kwargs):
         - name (str): The name of the model on testflight.
         - token (str, optional): The API key for testflight.
     """
-    api_key = token or os.environ.get("testflight_API_KEY")
+    api_key = token or os.environ.get("TESTFLIGHT_API_KEY")
     if not api_key:
-        raise ValueError("testflight_API_KEY environment variable is not set.")
+        raise ValueError("TESTFLIGHT_API_KEY environment variable is not set.")
 
     pipeline = get_pipeline(name)
     inputs, outputs, preprocess, postprocess = get_interface_args(pipeline)
