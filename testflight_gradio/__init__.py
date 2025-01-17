@@ -11,11 +11,11 @@ def get_image_base64(url: str, ext: str):
         encoded_string = base64.b64encode(image_file.read()).decode('utf-8')
     return "data:image/" + ext + ";base64," + encoded_string
 
-def get_fn(model_name: str, preprocess: Callable, postprocess: Callable, api_key: str):
+def get_fn(model_name: str, preprocess: Callable, postprocess: Callable, base_url: str,api_key: str):
     def fn(message, history):
         inputs = preprocess(message, history)
         client = OpenAI(
-            base_url="https://testflight-sandworm-2.fly.dev/api/v1",
+            base_url=base_url,
             api_key=api_key,
         )
         try:
@@ -78,12 +78,17 @@ def get_pipeline(model_name):
 
 def registry(name: str, token: str | None = None, **kwargs):
     """
-    Create a Gradio Interface for a model on testflight.
+    Create a Gradio Interface for a model on Testflight.
 
     Parameters:
-        - name (str): The name of the model on testflight.
-        - token (str, optional): The API key for testflight.
+        - name (str): The name of the model on Testflight.
+        - base_url (str, optional): The base URL for the Testflight API.
+        - token (str, optional): The API key for Testflight.
     """
+    base_url = kwargs.get("base_url") or os.environ.get("TESTFLIGHT_BASE_URL")
+    if not base_url:
+        raise ValueError("TESTFLIGHT_BASE_URL environment variable is not set.")
+
     api_key = token or os.environ.get("TESTFLIGHT_API_KEY")
     if not api_key:
         raise ValueError("TESTFLIGHT_API_KEY environment variable is not set.")
