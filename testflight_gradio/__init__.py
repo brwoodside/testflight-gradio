@@ -4,7 +4,7 @@ from openai import OpenAI
 import gradio as gr
 from typing import Callable
 
-__version__ = "0.0.1"
+__version__ = "0.0.1"   
 
 def get_image_base64(url: str, ext: str):
     with open(url, "rb") as image_file:
@@ -15,7 +15,7 @@ def get_fn(model_name: str, preprocess: Callable, postprocess: Callable, api_key
     def fn(message, history):
         inputs = preprocess(message, history)
         client = OpenAI(
-            base_url="https://api.together.xyz/v1",
+            base_url="https://testflight-sandworm-2.fly.dev/api/v1",
             api_key=api_key,
         )
         try:
@@ -38,25 +38,6 @@ def get_fn(model_name: str, preprocess: Callable, postprocess: Callable, api_key
 def handle_user_msg(message: str):
     if type(message) is str:
         return message
-    elif type(message) is dict:
-        if message["files"] is not None and len(message["files"]) > 0:
-            ext = os.path.splitext(message["files"][-1])[1].strip(".")
-            if ext.lower() in ["png", "jpg", "jpeg", "gif", "pdf"]:
-                encoded_str = get_image_base64(message["files"][-1], ext)
-            else:
-                raise NotImplementedError(f"Not supported file type {ext}")
-            content = [
-                    {"type": "text", "text": message["text"]},
-                    {
-                        "type": "image_url",
-                        "image_url": {
-                            "url": encoded_str,
-                        }
-                    },
-                ]
-        else:
-            content = message["text"]
-        return content
     else:
         raise NotImplementedError
 
@@ -97,15 +78,15 @@ def get_pipeline(model_name):
 
 def registry(name: str, token: str | None = None, **kwargs):
     """
-    Create a Gradio Interface for a model on Together.
+    Create a Gradio Interface for a model on testflight.
 
     Parameters:
-        - name (str): The name of the model on Together.
-        - token (str, optional): The API key for Together.
+        - name (str): The name of the model on testflight.
+        - token (str, optional): The API key for testflight.
     """
-    api_key = token or os.environ.get("TOGETHER_API_KEY")
+    api_key = token or os.environ.get("testflight_API_KEY")
     if not api_key:
-        raise ValueError("TOGETHER_API_KEY environment variable is not set.")
+        raise ValueError("testflight_API_KEY environment variable is not set.")
 
     pipeline = get_pipeline(name)
     inputs, outputs, preprocess, postprocess = get_interface_args(pipeline)

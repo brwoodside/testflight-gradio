@@ -203,9 +203,9 @@
         "Quantization": "FP16"
     },
     {
-        "Organization": "Together",
+        "Organization": "testflight",
         "Model Name": "StripedHyena Nous (7B)",
-        "API Model String": "togethercomputer/StripedHyena-Nous-7B",
+        "API Model String": "testflightcomputer/StripedHyena-Nous-7B",
         "Context length": 32768,
         "Quantization": "FP16"
     },

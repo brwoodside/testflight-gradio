@@ -3,9 +3,9 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "together-gradio"
+name = "testflight-gradio"
 version = "0.0.1"
-description = "A Python package for replicating Gradio applications using Together AI"
+description = "A Python package for replicating Gradio applications using testflight AI"
 authors = [
     { name = "AK", email = "ahsen.khaliq@gmail.com" }
 ]
@@ -22,12 +22,12 @@ dependencies = [
 ]
 
 [project.urls]
-homepage = "https://github.com/AK391/together-gradio"
-repository = "https://github.com/AK391/together-gradio"
+homepage = "https://github.com/AK391/testflight-gradio"
+repository = "https://github.com/AK391/testflight-gradio"
 
 [project.optional-dependencies]
 dev = ["pytest"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["together_gradio"]
+packages = ["testflight_gradio"]
 
